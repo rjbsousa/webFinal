@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="modeloWebFinal.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="modeloWebFinalStoreContainer">
+    <EntitySet Name="Cliente" EntityType="modeloWebFinal.Store.Cliente" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="clientePK" />
+    </Key>
+    <Property Name="clientePK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="varchar" MaxLength="50" />
+    <Property Name="morada" Type="varchar" MaxLength="50" />
+    <Property Name="localidade" Type="varchar" MaxLength="50" />
+    <Property Name="codigoPostal" Type="varchar" MaxLength="8" />
+    <Property Name="NIF" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Function Name="adicionaCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nome" Type="varchar" Mode="In" />
+    <Parameter Name="morada" Type="varchar" Mode="In" />
+    <Parameter Name="localidade" Type="varchar" Mode="In" />
+    <Parameter Name="codPostal" Type="varchar" Mode="In" />
+    <Parameter Name="NIF" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="editaCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="clienteID" Type="int" Mode="In" />
+    <Parameter Name="nome" Type="varchar" Mode="In" />
+    <Parameter Name="morada" Type="varchar" Mode="In" />
+    <Parameter Name="localidade" Type="varchar" Mode="In" />
+    <Parameter Name="codPostal" Type="varchar" Mode="In" />
+    <Parameter Name="NIF" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="eliminaCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="clienteID" Type="int" Mode="In" />
+  </Function>
+</Schema>

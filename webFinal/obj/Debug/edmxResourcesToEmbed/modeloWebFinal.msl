@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="modeloWebFinalStoreContainer" CdmEntityContainer="dbWebFinalEntities">
+    <EntitySetMapping Name="Cliente">
+      <EntityTypeMapping TypeName="modeloWebFinal.Cliente">
+        <MappingFragment StoreEntitySet="Cliente">
+          <ScalarProperty Name="clientePK" ColumnName="clientePK" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="morada" ColumnName="morada" />
+          <ScalarProperty Name="localidade" ColumnName="localidade" />
+          <ScalarProperty Name="codigoPostal" ColumnName="codigoPostal" />
+          <ScalarProperty Name="NIF" ColumnName="NIF" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="modeloWebFinal.Cliente">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="modeloWebFinal.Store.adicionaCliente">
+            <ScalarProperty Name="codigoPostal" ParameterName="codPostal" />
+            <ScalarProperty Name="NIF" ParameterName="NIF" />
+            <ScalarProperty Name="localidade" ParameterName="localidade" />
+            <ScalarProperty Name="morada" ParameterName="morada" />
+            <ScalarProperty Name="nome" ParameterName="nome" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="modeloWebFinal.Store.editaCliente">
+            <ScalarProperty Name="codigoPostal" ParameterName="codPostal" Version="Current" />
+            <ScalarProperty Name="clientePK" ParameterName="clienteID" Version="Current" />
+            <ScalarProperty Name="NIF" ParameterName="NIF" Version="Current" />
+            <ScalarProperty Name="localidade" ParameterName="localidade" Version="Current" />
+            <ScalarProperty Name="morada" ParameterName="morada" Version="Current" />
+            <ScalarProperty Name="nome" ParameterName="nome" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="modeloWebFinal.Store.eliminaCliente">
+            <ScalarProperty Name="clientePK" ParameterName="clienteID" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="adicionaCliente" FunctionName="modeloWebFinal.Store.adicionaCliente" />
+    <FunctionImportMapping FunctionImportName="editaCliente" FunctionName="modeloWebFinal.Store.editaCliente" />
+    <FunctionImportMapping FunctionImportName="eliminaCliente" FunctionName="modeloWebFinal.Store.eliminaCliente" />
+  </EntityContainerMapping>
+</Mapping>

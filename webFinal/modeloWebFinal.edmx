@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="modeloWebFinal.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="modeloWebFinalStoreContainer">
+          <EntitySet Name="Cliente" EntityType="modeloWebFinal.Store.Cliente" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="clientePK" />
+          </Key>
+          <Property Name="clientePK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="varchar" MaxLength="50" />
+          <Property Name="morada" Type="varchar" MaxLength="50" />
+          <Property Name="localidade" Type="varchar" MaxLength="50" />
+          <Property Name="codigoPostal" Type="varchar" MaxLength="8" />
+          <Property Name="NIF" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="adicionaCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nome" Type="varchar" Mode="In" />
+          <Parameter Name="morada" Type="varchar" Mode="In" />
+          <Parameter Name="localidade" Type="varchar" Mode="In" />
+          <Parameter Name="codPostal" Type="varchar" Mode="In" />
+          <Parameter Name="NIF" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="editaCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="clienteID" Type="int" Mode="In" />
+          <Parameter Name="nome" Type="varchar" Mode="In" />
+          <Parameter Name="morada" Type="varchar" Mode="In" />
+          <Parameter Name="localidade" Type="varchar" Mode="In" />
+          <Parameter Name="codPostal" Type="varchar" Mode="In" />
+          <Parameter Name="NIF" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="eliminaCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="clienteID" Type="int" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="modeloWebFinal" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="dbWebFinalEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Cliente" EntityType="modeloWebFinal.Cliente" />
+          <FunctionImport Name="adicionaCliente">
+            <Parameter Name="nome" Mode="In" Type="String" />
+            <Parameter Name="morada" Mode="In" Type="String" />
+            <Parameter Name="localidade" Mode="In" Type="String" />
+            <Parameter Name="codPostal" Mode="In" Type="String" />
+            <Parameter Name="NIF" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="editaCliente">
+            <Parameter Name="clienteID" Mode="In" Type="Int32" />
+            <Parameter Name="nome" Mode="In" Type="String" />
+            <Parameter Name="morada" Mode="In" Type="String" />
+            <Parameter Name="localidade" Mode="In" Type="String" />
+            <Parameter Name="codPostal" Mode="In" Type="String" />
+            <Parameter Name="NIF" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="eliminaCliente">
+            <Parameter Name="clienteID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="clientePK" />
+          </Key>
+          <Property Name="clientePK" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="morada" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="localidade" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="codigoPostal" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="NIF" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="modeloWebFinalStoreContainer" CdmEntityContainer="dbWebFinalEntities">
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="modeloWebFinal.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="clientePK" ColumnName="clientePK" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="morada" ColumnName="morada" />
+                <ScalarProperty Name="localidade" ColumnName="localidade" />
+                <ScalarProperty Name="codigoPostal" ColumnName="codigoPostal" />
+                <ScalarProperty Name="NIF" ColumnName="NIF" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="modeloWebFinal.Cliente">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="modeloWebFinal.Store.adicionaCliente">
+                  <ScalarProperty Name="codigoPostal" ParameterName="codPostal" />
+                  <ScalarProperty Name="NIF" ParameterName="NIF" />
+                  <ScalarProperty Name="localidade" ParameterName="localidade" />
+                  <ScalarProperty Name="morada" ParameterName="morada" />
+                  <ScalarProperty Name="nome" ParameterName="nome" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="modeloWebFinal.Store.editaCliente">
+                  <ScalarProperty Name="codigoPostal" ParameterName="codPostal" Version="Current" />
+                  <ScalarProperty Name="clientePK" ParameterName="clienteID" Version="Current" />
+                  <ScalarProperty Name="NIF" ParameterName="NIF" Version="Current" />
+                  <ScalarProperty Name="localidade" ParameterName="localidade" Version="Current" />
+                  <ScalarProperty Name="morada" ParameterName="morada" Version="Current" />
+                  <ScalarProperty Name="nome" ParameterName="nome" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="modeloWebFinal.Store.eliminaCliente" >
+                  <ScalarProperty Name="clientePK" ParameterName="clienteID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="adicionaCliente" FunctionName="modeloWebFinal.Store.adicionaCliente" />
+          <FunctionImportMapping FunctionImportName="editaCliente" FunctionName="modeloWebFinal.Store.editaCliente" />
+          <FunctionImportMapping FunctionImportName="eliminaCliente" FunctionName="modeloWebFinal.Store.eliminaCliente" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

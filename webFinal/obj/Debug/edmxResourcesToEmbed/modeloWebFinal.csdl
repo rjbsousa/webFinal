@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="modeloWebFinal" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="dbWebFinalEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Cliente" EntityType="modeloWebFinal.Cliente" />
+    <FunctionImport Name="adicionaCliente">
+      <Parameter Name="nome" Mode="In" Type="String" />
+      <Parameter Name="morada" Mode="In" Type="String" />
+      <Parameter Name="localidade" Mode="In" Type="String" />
+      <Parameter Name="codPostal" Mode="In" Type="String" />
+      <Parameter Name="NIF" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="editaCliente">
+      <Parameter Name="clienteID" Mode="In" Type="Int32" />
+      <Parameter Name="nome" Mode="In" Type="String" />
+      <Parameter Name="morada" Mode="In" Type="String" />
+      <Parameter Name="localidade" Mode="In" Type="String" />
+      <Parameter Name="codPostal" Mode="In" Type="String" />
+      <Parameter Name="NIF" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="eliminaCliente">
+      <Parameter Name="clienteID" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="clientePK" />
+    </Key>
+    <Property Name="clientePK" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="morada" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="localidade" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="codigoPostal" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+    <Property Name="NIF" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+</Schema>
